@@ -114,6 +114,8 @@ func (builder *StatefulSetBuilder) Update(object client.Object) error {
 		Type: appsv1.RollingUpdateStatefulSetStrategyType,
 	}
 
+	sts.Spec.PodManagementPolicy = "Parallel"
+
 	//Annotations
 	sts.Annotations = metadata.ReconcileAndFilterAnnotations(sts.Annotations, builder.Instance.Annotations)
 
